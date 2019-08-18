@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import styled, { ThemeProvider } from "styled-components";
+import "./App.css";
+//global stylying
+const theme = {
+  primary: "teal",
+  secondary: "green"
+};
+
+const Button = styled.button`
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 10px;
+  /* background: red; */
+  /* background:${props => (props.primary ? "red" : "green")} */
+  background:${props => props.theme.primary};
+  color: #fff;
+  //psudo class
+  &:hover {
+    background: blue;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <h1>styled components</h1>
+        <form action="">
+          <input type="text" />
+          &nbsp;
+          <Button> CREATE</Button>
+        </form>
+      </div>
+    </ThemeProvider>
   );
 }
 
